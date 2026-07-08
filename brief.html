@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>운영진 안내 — 도안호수러닝크루</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .briefbar{background:#0b0e14;color:#fff;text-align:center;padding:10px;font-size:13px;font-weight:700}
+  .stat{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px}
+  .s-ok{background:rgba(13,148,136,.14);color:var(--teal)}
+  .s-no{background:#fdecea;color:#c0392b}
+  .s-later{background:#eef3f8;color:var(--sub)}
+  .cklist{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+  .cklist li{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;font-size:14.5px}
+  .cklist li .mk{flex:0 0 auto;font-weight:900}
+  .ok .mk{color:var(--teal)}.no .mk{color:#c0392b}.later .mk{color:var(--dim)}
+  .rmap{counter-reset:r;display:flex;flex-direction:column;gap:10px}
+  .rmap .st{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .rmap .st .n{flex:0 0 auto;width:32px;height:32px;border-radius:9px;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;display:grid;place-items:center;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="briefbar">🔒 운영진 안내 · 내부 공유용 (공개 메뉴엔 없는 페이지예요)</div>
+
+<header class="hd">
+  <div class="wrap in">
+    <a href="index.html" class="brand"><span class="m">▶</span>도안호수러닝크루</a>
+    <nav class="nav">
+      <a href="index.html">홈</a><a href="activity.html">활동 안내</a>
+      <a href="about.html">소개</a><a href="join.html">참여하기</a>
+    </nav>
+    <a href="index.html" class="btn btn-ghost cta">← 공개 사이트</a>
+    <button class="burger" id="burger" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mnav" id="mnav">
+    <a href="index.html">홈</a><a href="activity.html">활동 안내</a>
+    <a href="about.html">소개</a><a href="join.html">참여하기</a>
+  </nav>
+</header>
+
+<section class="phead">
+  <div class="wrap in">
+    <span class="eyebrow">FOR ORGANIZERS</span>
+    <h1 class="h-sec" style="font-size:clamp(28px,5vw,46px)">운영진 안내</h1>
+    <p class="lead">지금 보시는 사이트가 어디까지 되어 있고, 무엇이 아직 안 되어 있는지 — 편하게 훑어보고 의견 주세요.</p>
+    <p style="margin-top:12px"><span class="stat s-later">현재 버전 v0.1 · 테스트 시안</span></p>
+  </div>
+</section>
+
+<!-- 이 사이트의 역할 -->
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow rise">이 사이트가 하는 일</span>
+    <h2 class="h-sec rise">"공식 안내소" 한 곳</h2>
+    <p class="lead rise">이 사이트는 사진첩·게시판·커뮤니티가 <b style="color:var(--ink)">아닙니다.</b> 딱 네 가지 — ① 크루 홍보 ② 신규가 "체계 잡혔다" 느끼는 신뢰 ③ 언제·어디서·어떻게 같은 고정 정보 ④ 당근에서 온 사람 맞이 — 만 합니다.</p>
+    <div class="grid g3 rise" style="margin-top:22px">
+      <div class="card"><h3>🌊 사이트</h3><p>홍보·신뢰·정보 (지금 이거)</p></div>
+      <div class="card"><h3>📗 밴드</h3><p>사진·기록 (회원 전용)</p></div>
+      <div class="card"><h3>💬 카톡 2방</h3><p>실시간 소통·공지</p></div>
+    </div>
+    <p class="note rise" style="margin-top:16px">🥕 신규 유입은 <b>당근</b>이 1순위 → 사이트는 당근 글이 가리키는 "제대로 된 공식 얼굴" 역할.</p>
+  </div>
+</section>
+
+<!-- 구현 현황 -->
+<section class="sec soft">
+  <div class="wrap">
+    <span class="eyebrow rise">STATUS</span>
+    <h2 class="h-sec rise">지금 되어 있는 것 / 아닌 것</h2>
+
+    <p style="font-weight:800;margin:18px 0 8px">✅ 구현됨</p>
+    <ul class="cklist rise">
+      <li class="ok"><span class="mk">✓</span><span><b>4개 페이지</b> — 홈 · 활동 안내 · 소개 · 참여하기 (클릭 이동 됨)</span></li>
+      <li class="ok"><span class="mk">✓</span><span><b>디자인 톤</b> — 라이트+오로라, 틸·블루(호수), 모바일 대응</span></li>
+      <li class="ok"><span class="mk">✓</span><span><b>당근 배너</b> · 카톡 3스텝 가입 동선</span></li>
+      <li class="ok"><span class="mk">✓</span><span><b>페이스 그룹 · 안전 · 에티켓 · FAQ</b> 구조</span></li>
+    </ul>
+
+    <p style="font-weight:800;margin:20px 0 8px">🚧 아직 안 됨 / 일부러 뺀 것</p>
+    <ul class="cklist rise">
+      <li class="no"><span class="mk">✕</span><span><b>실제 정보 미입력</b> — 요일·시간·장소·멤버 수 등은 예시(형광 밑줄). 배포 전 실제 값으로 교체 예정</span></li>
+      <li class="no"><span class="mk">✕</span><span><b>버튼 링크 미연결</b> — 당근·카톡·인스타·밴드 실제 주소 아직 안 넣음</span></li>
+      <li class="later"><span class="mk">—</span><span><b>게시판</b> — 사이트에 안 만듭니다. 밴드가 게시판 역할. (신생 크루 자체 게시판은 대부분 방치돼 죽는다는 조사 결과)</span></li>
+      <li class="later"><span class="mk">—</span><span><b>사진 갤러리</b> — 멤버들이 사이트 노출을 원치 않아 뺌. 사진은 회원 밴드에만</span></li>
+      <li class="later"><span class="mk">—</span><span><b>후기(저널)</b> — 손이 많이 가 지금은 뺌 (필요 시 나중에)</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 로드맵 -->
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow rise">ROADMAP</span>
+    <h2 class="h-sec rise">앞으로</h2>
+    <div class="rmap rise" style="margin-top:20px">
+      <div class="st"><div class="n">1</div><div><b>지금 — 방향 검토</b><p style="color:var(--sub);font-size:13.5px">운영진이 이 테스트 버전을 보고 톤·구조·문구 피드백</p></div></div>
+      <div class="st"><div class="n">2</div><div><b>배포 전 — 내용 채우기</b><p style="color:var(--sub);font-size:13.5px">실제 정보·링크 입력, 문구·구조 수정, 로고/도메인</p></div></div>
+      <div class="st"><div class="n">3</div><div><b>정식 배포</b><p style="color:var(--sub);font-size:13.5px">무료 호스팅 + 도메인, 당근·카톡·인스타에 링크 연결</p></div></div>
+      <div class="st"><div class="n">4</div><div><b>향후(선택)</b><p style="color:var(--sub);font-size:13.5px">멤버 100명+ 커지면 사이트 내 게시판·신청·뱃지 등 확장 검토</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 피드백 요청 -->
+<section class="sec soft">
+  <div class="wrap">
+    <span class="eyebrow rise">부탁</span>
+    <h2 class="h-sec rise">운영진께 여쭤요</h2>
+    <ul class="rise" style="margin-top:14px">
+      <li>전체 <b>톤·색</b>이 우리 크루답나요?</li>
+      <li>신규가 봤을 때 <b>빠진 정보</b>는 없나요? (더 넣을 것 / 뺄 것)</li>
+      <li><b>문구</b> 중 어색하거나 우리 색깔과 안 맞는 표현?</li>
+      <li>게시판을 밴드로 대체하는 방향, 동의하시나요?</li>
+      <li>도메인 이름 아이디어 있으세요?</li>
+    </ul>
+    <p class="note rise" style="margin-top:16px">💬 의견은 <b>카톡 정회원방</b> 또는 운영진 회의에서. 반영해서 다음 버전 올릴게요.</p>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap in">
+    <div>
+      <div class="nm">도안호수러닝크루</div>
+      <div class="tg">운영진 내부 안내 페이지</div>
+      <div class="social">
+        <a href="index.html" class="sbtn">← 공개 사이트로</a>
+      </div>
+    </div>
+    <nav><a href="index.html">홈</a><a href="activity.html">활동 안내</a><a href="about.html">소개</a><a href="join.html">참여하기</a></nav>
+  </div>
+  <div class="bot">© 2026 도안호수러닝크루 · 운영진 안내(비공개) · 검색 노출 안 됨</div>
+</footer>
+
+<div class="rehearsal">🎬 리허설 시안 (최종 아님)</div>
+<script src="script.js"></script>
+</body>
+</html>
