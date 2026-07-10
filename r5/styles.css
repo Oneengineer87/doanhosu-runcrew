@@ -1617,4 +1617,201 @@ p {
 @media (max-width: 680px) {
   .photo-hero { box-shadow: none; }
   .safety-item { border-radius: 12px; }
+
+  /* Mobile type scale: information first, not a scaled-down desktop layout. */
+  body {
+    font-size: 16px;
+    line-height: 1.72;
+  }
+
+  .section {
+    padding-block: 72px;
+  }
+
+  .section-tight {
+    padding-block: 56px;
+  }
+
+  .eyebrow {
+    margin-bottom: 13px;
+    font-size: 13px;
+  }
+
+  .section-title {
+    margin-bottom: 16px;
+    font-size: clamp(34px, 9.4vw, 40px);
+    line-height: 1.1;
+  }
+
+  .section-copy {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .quiet-label,
+  .photo-test-label,
+  .placeholder-label,
+  .status-chip {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .page-hero {
+    padding: 76px 0 54px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(42px, 12vw, 52px);
+    line-height: 0.98;
+  }
+
+  .page-hero p {
+    margin-top: 24px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .photo-hero-copy p {
+    margin-bottom: 22px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .button {
+    min-height: 52px;
+    padding-inline: 19px;
+    font-size: 15px;
+  }
+
+  .pass-details {
+    padding-top: 16px;
+  }
+
+  .pass-detail small,
+  .fact-item small,
+  .info-stack span:first-child,
+  .info-row dt {
+    font-size: 13px;
+  }
+
+  .pass-detail strong,
+  .info-row dd,
+  .info-stack li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .fact-item {
+    padding-block: 22px;
+  }
+
+  .fact-item strong {
+    font-size: 23px;
+    line-height: 1.23;
+  }
+
+  .info-stack {
+    margin-top: 28px;
+  }
+
+  .info-stack li,
+  .info-row {
+    grid-template-columns: 92px 1fr;
+    gap: 14px;
+    padding-block: 17px;
+  }
+
+  .notice {
+    padding: 19px 20px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .timeline {
+    margin-top: 36px;
+  }
+
+  .timeline li {
+    min-height: 0;
+    padding: 26px 4px;
+  }
+
+  .timeline li::before {
+    margin-bottom: 28px;
+  }
+
+  .timeline h3,
+  .safety-item h3 {
+    font-size: 24px;
+  }
+
+  .timeline p,
+  .safety-item p,
+  .mission-item p,
+  .role-row span,
+  .channel-row p,
+  .action-item p,
+  .faq-answer {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .pace-name {
+    font-size: 26px;
+  }
+
+  .pace-value {
+    font-size: 38px;
+  }
+
+  .pace-desc {
+    font-size: 16px;
+  }
+
+  .role-row strong,
+  .channel-row strong {
+    font-size: 21px;
+  }
+
+  .action-item {
+    padding-block: 28px;
+  }
+
+  .action-item h3 {
+    font-size: 26px;
+  }
+
+  .faq-list {
+    margin-top: 32px;
+  }
+
+  .faq-list summary {
+    min-height: 74px;
+    padding-block: 18px;
+    font-size: 19px;
+    line-height: 1.45;
+  }
+
+  .closing-panel {
+    padding: 42px 26px;
+    border-radius: 20px;
+  }
+
+  .closing-panel h2 {
+    margin-bottom: 17px;
+    font-size: clamp(36px, 10vw, 44px);
+    line-height: 1.04;
+  }
+
+  .closing-panel p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* Mobile scrolling should never leave reading content in a faded state. */
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
