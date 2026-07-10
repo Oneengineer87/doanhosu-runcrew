@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site.js";
+const r = site.regularRun;
+const hasForm = !!site.embeds.joinFormSrc;
+---
+<BaseLayout title="함께하기">
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">JOIN</span>
+      <h1 class="ph-title">함께 달려요</h1>
+      <p class="lead">가입비도, 자격도 없습니다. 딱 한 번 나와보면 압니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid grid-2" style="gap:36px;align-items:start">
+      <!-- 안내 -->
+      <div>
+        <h2 class="title" style="font-size:26px">가입 안내</h2>
+        <ul class="join-list mt-s">
+          <li><b>대상</b> — 초보 환영, 나이·경력 무관</li>
+          <li><b>정기런</b> — {r.day} {r.time}, <span class="ph">{r.place}</span></li>
+          <li><b>준비물</b> — 운동화, 편한 옷, 물 한 병</li>
+          <li><b>회비</b> — {site.fee}</li>
+          <li><b>첫 참여</b> — "게스트런"으로 부담 없이 체험 후 결정</li>
+        </ul>
+        <div class="safety">
+          <b>💡 안전·에티켓</b>
+          <p>한 줄로 달리기 · 신호 준수 · 반사장비 착용 · 본인 건강 상태는 스스로 확인해 주세요.
+          부상 징후가 있으면 참지 말고 알려주세요.</p>
+        </div>
+      </div>
+
+      <!-- 신청 폼 -->
+      <div>
+        <h2 class="title" style="font-size:26px">신청하기</h2>
+        {hasForm ? (
+          <div class="form-frame">
+            <iframe src={site.embeds.joinFormSrc} width="100%" height="720" frameborder="0"
+              title="가입 신청 폼" loading="lazy">로딩 중…</iframe>
+          </div>
+        ) : (
+          <div class="embed-slot mt-s">
+            <p style="font-weight:700;color:var(--ink)">📝 구글 폼 신청서 자리</p>
+            <p class="mt-s">구글 폼을 만들고 "퍼가기(&lt; &gt;)" HTML의 <code>src</code> 주소를<br/>
+            <code>src/data/site.js</code> 의 <code>embeds.joinFormSrc</code> 에 붙여넣으면<br/>여기에 신청서가 나타납니다.</p>
+            <a href={site.links.openchat} target="_blank" rel="noopener" class="btn btn-dark mt-m">지금은 오픈채팅으로 문의 →</a>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead{background:var(--ink);color:#fff;padding:56px 0 48px}
+  .pagehead .eyebrow{color:var(--volt)}
+  .ph-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:10px 0 8px}
+  .pagehead .lead{color:#c4c9d0}
+  .join-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .join-list li{padding:14px 18px;background:var(--soft);border-radius:12px;font-size:15px}
+  .join-list b{display:inline-block;min-width:64px;color:var(--ink)}
+  .safety{margin-top:22px;border:1px solid var(--line);border-left:4px solid var(--volt);border-radius:12px;padding:16px 18px}
+  .safety p{color:var(--muted);font-size:14px;margin-top:6px}
+  .form-frame{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+</style>

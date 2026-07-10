@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site.js";
+const r = site.regularRun;
+---
+<BaseLayout title="크루 소개">
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">ABOUT</span>
+      <h1 class="ph-title">우리는 누구인가</h1>
+      <p class="lead">달리기는 핑계, 사람이 이유. {site.region}에서 함께 뛰는 {site.crewName}입니다.</p>
+    </div>
+  </section>
+
+  <!-- 창립 스토리 (정체성 = 핵심 자산) -->
+  <section class="section">
+    <div class="wrap grid grid-2" style="align-items:center">
+      <div>
+        <span class="eyebrow">OUR STORY</span>
+        <h2 class="title">우리의 시작</h2>
+        <p class="lead mt-s">
+          <span class="ph">여기에 크루의 창립 스토리를 적으세요.</span> 왜 이 크루를 시작했는지,
+          이름에 담긴 뜻, 우리가 지향하는 러닝 문화 — 이 이야기가 크루의 가장 큰 자산이 됩니다.
+        </p>
+        <p class="lead mt-s">
+          우리의 원칙은 하나. <b>"{r.note}"</b> — 빠르든 느리든, 아무도 뒤에 혼자 남겨두지 않습니다.
+        </p>
+      </div>
+      <div class="story-card">
+        <div class="sc-row"><span>활동 지역</span><b class="ph">{site.region}</b></div>
+        <div class="sc-row"><span>정기런</span><b>{r.day} {r.time}</b></div>
+        <div class="sc-row"><span>집합</span><b class="ph">{r.place}</b></div>
+        <div class="sc-row"><span>기본 거리</span><b>{r.distance}</b></div>
+        <div class="sc-row"><span>회비</span><b>{site.fee}</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 페이스 그룹 -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <span class="eyebrow">PACE GROUPS</span>
+      <h2 class="title">페이스 그룹</h2>
+      <p class="lead">내 속도에 맞는 그룹에서 달립니다. 초보는 C그룹에서 부담 없이 시작하세요.</p>
+      <div class="grid grid-3 mt-m">
+        {site.paceGroups.map((g)=>(
+          <div class="card pace-card">
+            <div class="pace-name">{g.name}</div>
+            <div class="pace-val">{g.pace}</div>
+            <div class="pace-who">{g.who}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 운영진 -->
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">CREW</span>
+      <h2 class="title">운영진</h2>
+      <p class="lead">한 명이 다 하지 않습니다. 역할을 나눠 오래 갑니다.</p>
+      <div class="grid grid-4 mt-m">
+        {site.crew.map((c)=>(
+          <div class="card center">
+            <div class="crew-emoji">{c.emoji}</div>
+            <div class="crew-name ph">{c.name}</div>
+            <div class="crew-role">{c.role}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 처음이라면 (온보딩) -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <span class="eyebrow">FIRST TIME?</span>
+      <h2 class="title">처음이라면</h2>
+      <div class="grid grid-4 mt-m">
+        {[
+          {n:"1",t:"편한 복장",d:"운동화·편한 옷이면 충분. 장비 필요 없어요."},
+          {n:"2",t:"집합 장소로",d:`정기런 시간에 ${r.place}로 오세요.`},
+          {n:"3",t:"C그룹에서",d:"초보 페이스 그룹에서 함께 뜁니다."},
+          {n:"4",t:"커피 한 잔",d:"달린 뒤엔 가볍게 인사하고 친해져요."},
+        ].map((s)=>(
+          <div class="step-card">
+            <div class="step-n">{s.n}</div>
+            <h3>{s.t}</h3>
+            <p class="lead" style="font-size:14px">{s.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="center mt-m"><a href="/join" class="btn btn-primary">게스트런 신청하기 →</a></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead{background:var(--ink);color:#fff;padding:56px 0 48px}
+  .pagehead .eyebrow{color:var(--volt)}
+  .ph-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:10px 0 8px}
+  .pagehead .lead{color:#c4c9d0}
+  .story-card{background:var(--ink);color:#fff;border-radius:var(--radius);padding:10px 24px}
+  .sc-row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid #23272e}
+  .sc-row:last-child{border-bottom:0}
+  .sc-row span{color:#9aa1ab;font-size:14px}
+  .sc-row b{font-weight:800}
+  .pace-card{text-align:center}
+  .pace-name{font-weight:900;font-size:18px}
+  .pace-val{font-size:26px;font-weight:900;color:var(--volt-deep);margin:8px 0 4px}
+  .pace-who{color:var(--muted);font-size:14px}
+  .crew-emoji{font-size:36px}
+  .crew-name{font-weight:800;font-size:16px;margin-top:8px}
+  .crew-role{color:var(--muted);font-size:13px}
+  .step-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .step-n{width:34px;height:34px;background:var(--volt);color:var(--ink);font-weight:900;border-radius:10px;
+    display:grid;place-items:center;margin-bottom:10px}
+  .step-card h3{font-size:17px;margin-bottom:4px}
+</style>

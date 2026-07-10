@@ -1,0 +1,72 @@
+/* ============================================================
+   러닝크루 사이트 — 전역 스타일 (디자인 시스템)
+   색·폰트를 바꾸려면 아래 :root 변수만 수정하세요.
+   ============================================================ */
+:root{
+  --ink:#0d0f12;        /* 거의 검정 (텍스트·다크 배경) */
+  --paper:#ffffff;      /* 흰 배경 */
+  --volt:#d4ff2e;       /* 시그니처 형광 (러닝 에너지) ← 크루 컬러로 교체 가능 */
+  --volt-deep:#a6cc00;
+  --muted:#6b7280;      /* 흐린 회색 텍스트 */
+  --line:#e6e8ec;       /* 경계선 */
+  --soft:#f4f6f8;       /* 옅은 배경 */
+  --ink-2:#1a1e24;
+  --radius:16px;
+  --wrap:1080px;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font); color:var(--ink); background:var(--paper);
+  line-height:1.65; font-size:16px; -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.section{padding:64px 0}
+.section-sm{padding:40px 0}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--volt-deep)}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+h2.title{font-size:clamp(26px,4vw,40px);font-weight:900;margin:8px 0 6px}
+.lead{color:var(--muted);font-size:17px;max-width:640px}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;
+  padding:14px 26px;border-radius:999px;border:2px solid var(--ink);cursor:pointer;transition:.15s}
+.btn-primary{background:var(--volt);border-color:var(--volt);color:var(--ink)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(166,204,0,.4)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
+
+/* 카드 */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.grid{display:grid;gap:18px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+/* 배지 */
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;
+  background:var(--soft);color:var(--ink-2);border:1px solid var(--line)}
+.chip-volt{background:var(--volt);border-color:var(--volt)}
+
+/* 임베드 안내(빈 상태) placeholder 박스 */
+.embed-slot{border:2px dashed var(--line);border-radius:var(--radius);padding:40px 24px;text-align:center;color:var(--muted);background:var(--soft)}
+.embed-slot code{background:#fff;padding:2px 8px;border-radius:6px;border:1px solid var(--line);font-size:13px}
+
+/* placeholder 표시 (교체 필요 강조) */
+.ph{background:rgba(212,255,46,.35);border-bottom:2px dotted var(--volt-deep);padding:0 2px;border-radius:3px}
+
+.section-alt{background:var(--soft)}
+.center{text-align:center}
+.mt-s{margin-top:10px}.mt-m{margin-top:22px}.mt-l{margin-top:36px}
+
+@media(max-width:860px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .section{padding:48px 0}
+}

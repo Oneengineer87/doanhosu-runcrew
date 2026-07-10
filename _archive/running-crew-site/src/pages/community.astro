@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site.js";
+const notices = [
+  { date: "2026.○○.○○", title: "○월 정기런 일정 안내", pin: true },
+  { date: "2026.○○.○○", title: "우천 시 취소 기준 공지", pin: false },
+  { date: "2026.○○.○○", title: "첫 굿즈(스티커) 제작 투표", pin: false },
+];
+---
+<BaseLayout title="커뮤니티">
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">COMMUNITY</span>
+      <h1 class="ph-title">커뮤니티</h1>
+      <p class="lead">공지는 여기서, 실시간 소통은 오픈채팅에서. 각자 잘하는 자리에.</p>
+    </div>
+  </section>
+
+  <!-- 공지 아카이브 -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">공지사항</h2>
+      <p class="lead">지나간 공지도 검색되게 남깁니다. (실시간 대화는 오픈채팅)</p>
+      <div class="notices mt-m">
+        {notices.map((n)=>(
+          <div class="notice-row">
+            {n.pin && <span class="pin">고정</span>}
+            <b class="ph">{n.title}</b>
+            <span class="notice-date ph">{n.date}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 실시간 소통 유도 -->
+  <section class="section section-alt">
+    <div class="wrap center">
+      <h2 class="title">실시간 소통은 여기서</h2>
+      <p class="lead" style="margin:0 auto">번개런·날씨 변경·질문은 오픈채팅이 가장 빠릅니다. 사이트는 "남겨두는 것"만 담당해요.</p>
+      <div class="cta-row mt-m">
+        <a href={site.links.openchat} target="_blank" rel="noopener" class="btn btn-dark">💬 카카오 오픈채팅</a>
+        <a href={site.links.instagram} target="_blank" rel="noopener" class="btn btn-ghost">📷 인스타그램</a>
+        <a href={`mailto:${site.links.email}`} class="btn btn-ghost">✉️ 이메일 문의</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 문의 -->
+  <section class="section">
+    <div class="wrap contact">
+      <div>
+        <h2 class="title" style="font-size:24px">문의</h2>
+        <p class="lead">궁금한 점은 편하게 물어보세요.</p>
+      </div>
+      <div class="contact-info">
+        <div><span>인스타</span><a class="ph" href={site.links.instagram} target="_blank" rel="noopener">@your_crew</a></div>
+        <div><span>오픈채팅</span><a href={site.links.openchat} target="_blank" rel="noopener">참여 링크</a></div>
+        <div><span>이메일</span><a class="ph" href={`mailto:${site.links.email}`}>{site.links.email}</a></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead{background:var(--ink);color:#fff;padding:56px 0 48px}
+  .pagehead .eyebrow{color:var(--volt)}
+  .ph-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:10px 0 8px}
+  .pagehead .lead{color:#c4c9d0}
+  .notices{display:flex;flex-direction:column;gap:8px}
+  .notice-row{display:flex;align-items:center;gap:12px;padding:16px 20px;border:1px solid var(--line);
+    border-radius:12px;background:#fff}
+  .notice-row b{font-size:16px}
+  .notice-date{margin-left:auto;color:var(--muted);font-size:14px}
+  .pin{font-size:11px;font-weight:800;background:var(--volt);color:var(--ink);padding:3px 9px;border-radius:999px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .contact{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+  .contact-info{display:flex;flex-direction:column;gap:12px;min-width:280px}
+  .contact-info div{display:flex;gap:16px;padding:12px 16px;background:var(--soft);border-radius:10px}
+  .contact-info span{color:var(--muted);min-width:70px;font-size:14px}
+  .contact-info a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+</style>

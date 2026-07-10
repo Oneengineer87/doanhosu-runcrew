@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site.js";
+const r = site.regularRun;
+const hasCal = !!site.embeds.calendarSrc;
+const upcoming = [
+  { date: "2026.○○.○○", title: "정기런", tag: "정기", note: `${r.distance} · ${r.place}` },
+  { date: "2026.○○.○○", title: "번개런 (야간)", tag: "번개", note: "한강 코스" },
+  { date: "2026.○○.○○", title: "○○ 마라톤 단체참가", tag: "대회", note: "10K 부문" },
+];
+---
+<BaseLayout title="일정">
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">SCHEDULE</span>
+      <h1 class="ph-title">일정 · 이벤트</h1>
+      <p class="lead">정기런부터 대회·번개런까지. 다음에 언제 모이는지 한눈에.</p>
+    </div>
+  </section>
+
+  <!-- 다가오는 일정 -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">다가오는 일정</h2>
+      <div class="sched mt-m">
+        {upcoming.map((e)=>(
+          <div class="sched-row">
+            <div class="sched-date ph">{e.date}</div>
+            <div class="sched-body">
+              <span class={`sched-tag t-${e.tag}`}>{e.tag}</span>
+              <b>{e.title}</b>
+              <span class="sched-note">{e.note}</span>
+            </div>
+            <a href="/join" class="btn btn-ghost sched-cta">신청</a>
+          </div>
+        ))}
+      </div>
+      <p class="note-line">※ 실제 날짜·이벤트는 <code>src/pages/schedule.astro</code> 또는 아래 구글 캘린더로 관리하세요.</p>
+    </div>
+  </section>
+
+  <!-- 구글 캘린더 -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">전체 캘린더</h2>
+      <p class="lead">운영진이 폰으로 구글 캘린더에 일정을 추가하면 여기에 자동 반영됩니다.</p>
+      {hasCal ? (
+        <div class="cal-frame mt-m">
+          <iframe src={site.embeds.calendarSrc} width="100%" height="600" frameborder="0" scrolling="no"
+            title="크루 캘린더" loading="lazy"></iframe>
+        </div>
+      ) : (
+        <div class="embed-slot mt-m">
+          <p style="font-weight:700;color:var(--ink)">📅 구글 캘린더 자리</p>
+          <p class="mt-s">공개 구글 캘린더의 "퍼가기" <code>src</code> 주소를<br/>
+          <code>src/data/site.js</code> 의 <code>embeds.calendarSrc</code> 에 붙여넣으세요.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead{background:var(--ink);color:#fff;padding:56px 0 48px}
+  .pagehead .eyebrow{color:var(--volt)}
+  .ph-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:10px 0 8px}
+  .pagehead .lead{color:#c4c9d0}
+  .sched{display:flex;flex-direction:column;gap:10px}
+  .sched-row{display:flex;align-items:center;gap:18px;padding:18px 20px;border:1px solid var(--line);
+    border-radius:14px;background:#fff}
+  .sched-date{font-weight:800;min-width:120px;color:var(--ink)}
+  .sched-body{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1}
+  .sched-body b{font-size:16px}
+  .sched-note{color:var(--muted);font-size:14px}
+  .sched-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px}
+  .t-정기{background:var(--volt);color:var(--ink)}
+  .t-번개{background:#ffe0b2;color:#7a4a00}
+  .t-대회{background:#d7e3ff;color:#1a3a7a}
+  .sched-cta{padding:8px 18px;font-size:14px}
+  .note-line{margin-top:16px;color:var(--muted);font-size:13px}
+  .cal-frame{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:860px){.sched-row{flex-wrap:wrap}.sched-cta{margin-left:auto}}
+</style>

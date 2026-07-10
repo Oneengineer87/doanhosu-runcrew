@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도안호수러닝크루 · 러닝 가이드</title>
+<meta name="description" content="도안호수러닝크루 신규 회원 온보딩 가이드 — 첫 러닝화, 러닝 양말, 브랜드 지도까지 초보가 궁금한 것만 정리했습니다.">
+<meta property="og:title" content="도안호수러닝크루 · 러닝 가이드">
+<meta property="og:description" content="첫 러닝화부터 양말·브랜드까지, 러닝 초보가 궁금한 것만 골라 정리했어요.">
+<meta property="og:type" content="website">
+
+<!-- 폰트: 깃헙(jsdelivr) CDN — 시스템 폰트 폴백 포함 -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+  @font-face{ font-family:'Paperlogy'; font-weight:800; font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-8ExtraBold.woff2') format('woff2'); }
+  @font-face{ font-family:'Paperlogy'; font-weight:700; font-display:swap;
+    src:url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy-7Bold.woff2') format('woff2'); }
+
+  :root{
+    --bg:#0A1020; --ink:#F4F7FB; --sub:#AEBACC; --dim:#93A3BC;
+    --teal:#5EEAD4; --blue:#60A5FA;
+    --grad:linear-gradient(135deg,#5EEAD4,#60A5FA);
+    --grad-txt:linear-gradient(92deg,#5EEAD4 5%,#60A5FA 95%);
+    --card:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+    --line:rgba(255,255,255,.12);
+    --head:'Paperlogy','Pretendard Variable',-apple-system,sans-serif;
+    --body:'Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+    --mono:'Space Grotesk','Pretendard Variable',sans-serif;
+    --max:1120px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; scroll-padding-top:84px; }
+  body{ font-family:var(--body); background:var(--bg); color:var(--ink);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden; width:100%; line-height:1.6; }
+  a{ text-decoration:none; color:inherit; }
+  ::selection{ background:rgba(94,234,212,.28); color:#fff; }
+  .keep{ word-break:keep-all; overflow-wrap:anywhere; }
+
+  /* ===== 스크롤 진행바 ===== */
+  .progress{ position:fixed; top:0; left:0; height:3px; width:0%; z-index:60;
+    background:var(--grad); box-shadow:0 0 12px rgba(94,234,212,.6); transition:width .1s linear; }
+
+  /* ===== 배경 ===== */
+  .bg{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .aurora{ position:absolute; border-radius:50%; filter:blur(130px); }
+  .a1{ width:620px; height:620px; background:#134E6A; top:-220px; right:-160px; opacity:.85; }
+  .a2{ width:520px; height:520px; background:#2DD4BF; bottom:-260px; left:-200px; opacity:.16;
+    animation:float 16s ease-in-out infinite; }
+  .a3{ width:460px; height:460px; background:#4F6CF0; top:42%; left:52%; opacity:.15;
+    animation:float 20s ease-in-out infinite reverse; }
+  @keyframes float{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(28px,-32px);} }
+  .contour{ position:absolute; right:-140px; bottom:-40px; width:min(560px,60vw); opacity:.26; }
+  .grain{ position:absolute; inset:0; opacity:.5; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* ===== 내비 ===== */
+  header.nav{ position:fixed; top:0; left:0; right:0; z-index:50; transition:background .3s, border-color .3s, backdrop-filter .3s; border-bottom:1px solid transparent; }
+  header.nav.scrolled{ background:rgba(10,16,32,.72); backdrop-filter:blur(14px); border-bottom-color:var(--line); }
+  .nav-in{ max-width:var(--max); margin:0 auto; padding:16px 40px; display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; align-items:center; gap:11px; font-weight:800; font-size:19px; letter-spacing:-.4px; }
+  .logo .mark{ width:16px; height:16px; border-radius:5px; background:var(--grad); transform:rotate(45deg); box-shadow:0 0 16px rgba(94,234,212,.5); }
+  .navlinks{ display:flex; gap:28px; font-size:15px; color:var(--dim); font-weight:600; }
+  .navlinks a{ position:relative; transition:color .18s; }
+  .navlinks a::after{ content:''; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:var(--grad); transition:width .22s; border-radius:2px; }
+  .navlinks a:hover,.navlinks a.active{ color:var(--teal); }
+  .navlinks a:hover::after,.navlinks a.active::after{ width:100%; }
+  .navcta{ background:var(--grad); color:#0A1020; padding:10px 20px; border-radius:100px; font-weight:750; font-size:14.5px; transition:transform .15s, box-shadow .15s; }
+  .navcta:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(94,234,212,.32); }
+  .burger{ display:none; flex-direction:column; gap:5px; width:40px; height:40px; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.04); cursor:pointer; }
+  .burger span{ width:18px; height:2px; background:var(--ink); border-radius:2px; transition:.25s; }
+  .mobile-menu{ position:fixed; inset:0 0 0 auto; width:min(300px,82vw); z-index:55; background:rgba(12,18,34,.97); backdrop-filter:blur(18px); border-left:1px solid var(--line); transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1); padding:92px 30px 30px; display:flex; flex-direction:column; gap:6px; }
+  .mobile-menu.open{ transform:translateX(0); }
+  .mobile-menu a{ font-size:18px; font-weight:700; padding:14px 12px; border-radius:12px; color:var(--sub); }
+  .mobile-menu a:active{ background:rgba(255,255,255,.06); color:var(--teal); }
+  .scrim{ position:fixed; inset:0; z-index:54; background:rgba(5,8,16,.55); opacity:0; visibility:hidden; transition:.3s; }
+  .scrim.open{ opacity:1; visibility:visible; }
+
+  /* ===== 공통 레이아웃 ===== */
+  main{ position:relative; z-index:5; }
+  .section{ max-width:var(--max); margin:0 auto; padding:70px 40px; }
+  .secno{ font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:3px; color:var(--teal); }
+  .sech{ font-family:var(--head); font-weight:800; font-size:clamp(28px,5vw,40px); letter-spacing:-1px; margin:10px 0 8px; line-height:1.15; }
+  .secsub{ color:var(--dim); font-size:16px; margin-bottom:30px; max-width:640px; }
+
+  /* ===== 히어로 ===== */
+  .hero{ max-width:var(--max); margin:0 auto; padding:150px 40px 70px; position:relative; }
+  .eyebrow{ font-family:var(--mono); font-weight:700; font-size:clamp(11px,1.6vw,15px); letter-spacing:4px; color:var(--teal); display:flex; align-items:center; gap:14px; }
+  .eyebrow .ln{ width:52px; height:1px; background:linear-gradient(90deg,var(--teal),transparent); }
+  h1{ font-family:var(--head); font-weight:800; font-size:clamp(44px,8.5vw,84px); line-height:1.1; letter-spacing:-2.5px; margin:24px 0 0; }
+  h1 .grad{ background:var(--grad-txt); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead{ margin-top:28px; font-size:clamp(17px,2.5vw,22px); line-height:1.6; color:var(--sub); max-width:640px; font-weight:450; }
+  .lead b{ color:var(--ink); font-weight:700; }
+  .btns{ margin-top:38px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ padding:16px 32px; border-radius:100px; font-weight:750; font-size:16px; transition:transform .15s, box-shadow .15s, border-color .15s; }
+  .btn.primary{ background:var(--grad); color:#0A1020; }
+  .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 34px rgba(94,234,212,.34); }
+  .btn.ghost{ border:1px solid rgba(255,255,255,.2); color:#E6EDF6; background:rgba(255,255,255,.04); }
+  .btn.ghost:hover{ transform:translateY(-3px); border-color:rgba(94,234,212,.5); }
+  .meta{ margin-top:40px; display:flex; gap:30px; font-size:14.5px; color:var(--dim); flex-wrap:wrap; }
+  .meta b{ color:var(--teal); font-family:var(--mono); }
+
+  /* ===== 카드 ===== */
+  .grid{ display:grid; gap:20px; }
+  .g3{ grid-template-columns:repeat(3,1fr); }
+  .g2{ grid-template-columns:repeat(2,1fr); }
+  .card{ border:1px solid var(--line); background:var(--card); border-radius:22px; padding:28px 26px;
+    box-shadow:0 14px 40px rgba(0,0,0,.28); transition:transform .18s, border-color .18s, box-shadow .18s; position:relative; overflow:hidden; }
+  .card:hover{ transform:translateY(-5px); border-color:rgba(94,234,212,.4); box-shadow:0 22px 52px rgba(0,0,0,.4); }
+  .card .ico{ font-size:38px; line-height:1; }
+  .card .ttl{ font-family:var(--head); font-weight:700; font-size:22px; margin:14px 0 8px; letter-spacing:-.5px; }
+  .card .dsc{ font-size:15px; color:var(--dim); line-height:1.65; }
+  .card ul{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:9px; }
+  .card li{ font-size:14.5px; color:var(--sub); padding-left:22px; position:relative; }
+  .card li::before{ content:''; position:absolute; left:2px; top:9px; width:7px; height:7px; border-radius:50%; background:var(--grad); }
+  .card li b{ color:var(--ink); font-weight:700; }
+  .kbadge{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; padding:4px 12px; border-radius:100px; background:rgba(94,234,212,.14); color:var(--teal); border:1px solid rgba(94,234,212,.35); margin-bottom:6px; }
+  .kbadge.gray{ background:rgba(148,163,184,.14); color:#B7C4D6; border-color:rgba(148,163,184,.3); }
+
+  /* 넘버 룰 카드 (러닝화 3원칙) */
+  .rules{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:4px; }
+  .rule{ border:1px solid var(--line); background:var(--card); border-radius:20px; padding:26px 24px; transition:transform .18s, border-color .18s; }
+  .rule:hover{ transform:translateY(-4px); border-color:rgba(94,234,212,.4); }
+  .rule .n{ font-family:var(--mono); font-weight:700; font-size:15px; color:var(--teal); letter-spacing:2px; }
+  .rule h4{ font-size:19px; margin:12px 0 8px; font-weight:800; letter-spacing:-.4px; }
+  .rule p{ font-size:14.5px; color:var(--dim); line-height:1.6; }
+
+  /* 스텝/리스트 강조 박스 */
+  .callout{ border:1px solid var(--line); background:linear-gradient(160deg,rgba(94,234,212,.08),rgba(96,165,250,.04)); border-radius:20px; padding:24px 26px; margin-top:20px; }
+  .callout h4{ font-size:17px; font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .callout ol{ margin-left:20px; display:flex; flex-direction:column; gap:8px; font-size:15px; color:var(--sub); }
+  .callout ol b{ color:var(--ink); }
+
+  /* 브랜드 지도 */
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:22px; font-size:13.5px; color:var(--dim); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .brandgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  .bcard{ border:1px solid var(--line); background:var(--card); border-radius:20px; padding:24px; }
+  .bcard.star{ border-color:rgba(94,234,212,.4); background:linear-gradient(160deg,rgba(94,234,212,.1),rgba(255,255,255,.02)); }
+  .bcard h4{ font-size:17px; font-weight:800; margin-bottom:14px; letter-spacing:-.3px; }
+  .brow{ display:flex; gap:9px; padding:9px 0; border-top:1px solid rgba(255,255,255,.06); font-size:14.5px; align-items:baseline; }
+  .brow:first-of-type{ border-top:none; }
+  .brow .dot{ flex:none; font-size:12px; }
+  .brow .nm{ font-weight:700; color:var(--ink); flex:none; }
+  .brow .ds{ color:var(--dim); }
+
+  /* 예고 / 크루 안내 */
+  .soon{ border:1px dashed rgba(148,163,184,.4); background:rgba(255,255,255,.02); border-radius:22px; padding:34px; text-align:center; }
+  .soon .ico{ font-size:40px; }
+  .soon h3{ font-family:var(--head); font-weight:700; font-size:24px; margin:12px 0 6px; }
+  .soon p{ color:var(--dim); font-size:15px; }
+  .crew{ border:1px solid var(--line); background:linear-gradient(160deg,rgba(94,234,212,.1),rgba(96,165,250,.05)); border-radius:26px; padding:clamp(30px,5vw,54px); text-align:center; }
+  .crew h3{ font-family:var(--head); font-weight:800; font-size:clamp(26px,4.5vw,38px); letter-spacing:-1px; }
+  .crew p{ color:var(--sub); font-size:17px; margin:14px auto 26px; max-width:520px; }
+
+  /* 안내문 */
+  .note{ font-size:13px; color:#6E7F98; line-height:1.7; border-top:1px solid var(--line); padding-top:22px; margin-top:10px; }
+
+  footer{ position:relative; z-index:5; text-align:center; padding:40px 24px 60px; color:#5E6E86; font-size:13.5px; }
+  footer .fx{ font-weight:800; color:var(--dim); font-size:15px; }
+
+  /* 스크롤 리빌 */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:860px){
+    .g3{ grid-template-columns:1fr; } .rules{ grid-template-columns:1fr; }
+    .brandgrid{ grid-template-columns:1fr; } .g2{ grid-template-columns:1fr; }
+  }
+  @media (max-width:760px){
+    .nav-in{ padding:14px 20px; }
+    .navlinks,.navcta{ display:none; }
+    .burger{ display:flex; }
+    .hero{ padding:120px 22px 50px; }
+    .section{ padding:52px 22px; }
+    .meta{ gap:14px 24px; }
+  }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none!important; scroll-behavior:auto; } .reveal{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <!-- 배경 -->
+  <div class="bg">
+    <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+    <svg class="contour" viewBox="0 0 800 800" fill="none">
+      <g stroke="rgba(148,178,214,0.16)" stroke-width="1.6">
+        <path d="M400 720 C210 700 120 590 140 460 C160 330 300 260 430 270 C570 280 680 380 670 500 C660 630 560 735 400 720Z"/>
+        <path d="M400 660 C260 645 185 560 200 462 C215 360 320 310 425 318 C540 328 615 405 607 498 C598 600 520 672 400 660Z"/>
+        <path d="M402 600 C300 590 250 528 260 462 C272 388 345 355 422 362 C505 370 558 425 550 494 C543 566 490 608 402 600Z"/>
+      </g>
+      <circle cx="404" cy="465" r="7" fill="#5EEAD4" opacity=".8"/>
+    </svg>
+    <div class="grain"></div>
+  </div>
+
+  <!-- 내비 -->
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#top" class="logo"><span class="mark"></span>도안호수러닝크루</a>
+      <nav class="navlinks">
+        <a href="#shoes">첫 러닝화</a>
+        <a href="#socks">러닝 양말</a>
+        <a href="#brands">브랜드 지도</a>
+        <a href="#next">다음 편</a>
+        <a href="#crew">크루 안내</a>
+      </nav>
+      <a href="#crew" class="navcta">신규 환영 🙌</a>
+      <button class="burger" id="burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="scrim" id="scrim"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#shoes">첫 러닝화</a>
+    <a href="#socks">러닝 양말</a>
+    <a href="#brands">브랜드 지도</a>
+    <a href="#next">다음 편</a>
+    <a href="#crew">크루 안내</a>
+  </nav>
+
+  <main>
+    <!-- 히어로 -->
+    <section class="hero" id="top">
+      <div class="eyebrow reveal"><span class="ln"></span>DOAN LAKE RUNNING CREW · 가이드</div>
+      <h1 class="reveal">달리기 초보에게<br>필요한 건 <span class="grad">여기 다.</span></h1>
+      <p class="lead reveal">신발부터 양말·브랜드까지, <b>러닝 초보가 궁금한 것만</b> 골라 정리했어요.<br>새로 오셨다면, 여기서 시작하세요.</p>
+      <div class="btns reveal">
+        <a href="#shoes" class="btn primary">👟 첫 러닝화부터 보기</a>
+        <a href="#crew" class="btn ghost">크루 안내 →</a>
+      </div>
+      <div class="meta reveal">
+        <span><b>03</b> 가이드 공개</span>
+        <span><b>4</b>소스 교차검증</span>
+        <span><b>🌊</b> 도안호수 러닝크루</span>
+      </div>
+    </section>
+
+    <!-- 01 첫 러닝화 -->
+    <section class="section" id="shoes">
+      <div class="secno reveal">01 — FIRST SHOES</div>
+      <h2 class="sech reveal">첫 러닝화, 이것만 알면 끝 👟</h2>
+      <p class="secsub reveal keep">“무슨 신발 사요?”가 제일 많은 질문이에요. 처음엔 비싼 거 필요 없습니다. 딱 3가지만 기억하세요.</p>
+
+      <div class="rules">
+        <div class="rule reveal"><div class="n">01</div><h4>10만원대 쿠션화</h4><p>카본화·경기화는 한참 나중에! 처음엔 푹신한 데일리 쿠션화면 충분해요.</p></div>
+        <div class="rule reveal"><div class="n">02</div><h4>꼭 신어보고</h4><p>러닝화는 신는 순간 편해야 정답. ‘길들이는 기간’ 없습니다.</p></div>
+        <div class="rule reveal"><div class="n">03</div><h4>내 발에 맞는 것</h4><p>최저가보다 내 발에 맞는 게 우선. 초반 부상을 확 줄여줘요.</p></div>
+      </div>
+
+      <div class="grid g3" style="margin-top:20px">
+        <div class="card reveal">
+          <div class="ico">👟</div>
+          <div class="ttl">신발 종류 3가지</div>
+          <ul>
+            <li><b>쿠션화</b> — 푹신한 기본형. 초보 90% 정답.</li>
+            <li><b>안정화</b> — 발이 안쪽으로 무너지는 분(과회내)용.</li>
+            <li><b>카본화</b> — 경기용. 초보는 무릎·종아리 무리 ✗</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="ico">📏</div>
+          <div class="ttl">사이즈 ⚠️</div>
+          <ul>
+            <li>평소보다 <b>살짝 여유</b> (엄지 한 마디 ≈ 1cm)</li>
+            <li>신어볼 땐 <b>저녁</b>·걷고 난 뒤 (발 부었을 때)</li>
+            <li>발볼 넓으면 <b>와이드(2E)</b> 확인</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="ico">🔄</div>
+          <div class="ttl">교체 시기</div>
+          <ul>
+            <li>대략 <b>500~800km</b> / 주3회 기준 6~9개월</li>
+            <li>쿠션 꺼진 느낌 + 발·무릎 뻐근하면 신호</li>
+            <li>마일리지 앱 쓰면 자동 계산 편해요</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:20px">
+        <div class="callout reveal">
+          <h4>🙅 초보 흔한 실수 TOP 5</h4>
+          <ol>
+            <li>패션 스니커즈로 뛰기 (쿠션·구조가 달라요)</li>
+            <li>첫 신발부터 비싼 <b>카본화</b> (부상 지름길)</li>
+            <li>사이즈 딱 맞게 사기 (발톱 멍·물집)</li>
+            <li>한 켤레로 매일 뛰기 (하루 쉬어야 쿠션 복원)</li>
+            <li>최저가만 보고 발에 안 맞는 거 사기</li>
+          </ol>
+        </div>
+        <div class="callout reveal">
+          <h4>💰 예산별로 이렇게</h4>
+          <ol>
+            <li><b>입문 8~13만</b> — 브랜드 기본 데일리 쿠션 트레이너. 데카트론·푸마 가성비 라인 인기.</li>
+            <li><b>여유 15만~</b> — 상위 쿠션화. 처음부터 안 가도 OK.</li>
+            <li><b>일상+러닝 겸용</b> — 무난한 쿠션화 한 켤레로 충분.</li>
+          </ol>
+          <p style="font-size:13px;color:#6E7F98;margin-top:12px">※ 가격은 대략이에요. 세일·모델마다 다르니 구매 전 확인!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 러닝 양말 -->
+    <section class="section" id="socks">
+      <div class="secno reveal">02 — SOCKS</div>
+      <h2 class="sech reveal">신발 샀으면, 양말도! 🧦</h2>
+      <p class="secsub reveal keep">“양말이 그게 그거 아냐?” 아닙니다. 신발만큼 물집을 좌우하는 숨은 핵심이에요. 면양말만 벗어나도 발이 확 편해집니다.</p>
+
+      <div class="grid g2">
+        <div class="card reveal">
+          <div class="ico">💧</div>
+          <div class="ttl">왜 중요? — 면양말은 물집 주범</div>
+          <ul>
+            <li>면 100% = 땀 머금고 안 마름 → 축축 → <b>마찰 → 물집</b></li>
+            <li>기능성 = 땀 배출 → 뽀송 → 물집 뚝</li>
+            <li>신발 바꾸기 전에 <b>양말부터</b> 바꿔도 편해져요</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="ico">🧵</div>
+          <div class="ttl">뭘 신어요? — 소재·두께</div>
+          <ul>
+            <li>소재: <b>폴리에스터·나일론·메리노울</b> (면 ✗)</li>
+            <li>두께: 여름·속도=얇게 / 장거리=두껍게 / 초보=중간</li>
+            <li>발가락 물집 잦으면 → <b>발가락양말</b>(인진지 계열)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:20px">
+        <div class="callout reveal">
+          <h4>✅ 물집 안 나는 4가지</h4>
+          <ol>
+            <li><b>딱 맞는 사이즈</b> (헐렁하면 쓸림)</li>
+            <li><b>봉제선 없는 발가락</b> (seamless)</li>
+            <li><b>뒤꿈치 힐탭</b> (뒤꿈치 쓸림 방지)</li>
+            <li>발가락 물집 잦으면 <b>발가락양말</b></li>
+          </ol>
+        </div>
+        <div class="callout reveal">
+          <h4>💡 실수 &amp; 꿀팁</h4>
+          <ol>
+            <li>피하기: <b>면양말</b>, 너무 큰 양말</li>
+            <li>양말도 소모품 — 여러 켤레 굴려 신기</li>
+            <li>물집 잘 나면: 마찰 부위 바세린 or 얇은 이중양말</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 브랜드 지도 -->
+    <section class="section" id="brands">
+      <div class="secno reveal">03 — BRAND MAP</div>
+      <h2 class="sech reveal">러닝 양말 브랜드 지도 🏷️</h2>
+      <p class="secsub reveal keep">국내에서 바로 살 수 있는 것 위주로 정리했어요. 양말은 진입장벽이 낮으니 한 켤레씩 비교해보세요.</p>
+      <div class="legend reveal">
+        <span>🟢 바로구매</span><span>🟡 일부·직구병행</span><span>🔴 직구위주</span>
+      </div>
+
+      <div class="brandgrid">
+        <div class="bcard star reveal">
+          <h4>⭐ 국내 초보 실전픽 — 일단 이것부터</h4>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">CEP</span><span class="ds">커뮤니티 프리미엄 대세. 압박·내구성 끝판왕 (가격 높은 편)</span></div>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">나이키·아식스</span><span class="ds">쿠션·통기성 좋고 매장서 바로</span></div>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">미즈노</span><span class="ds">러닝갤 인기, 탄탄한 기본기</span></div>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">삭피엔스·다이소</span><span class="ds">가성비 입문, 여러 켤레 굴리기 좋음</span></div>
+        </div>
+        <div class="bcard reveal">
+          <h4>전통 강자 <span style="font-weight:500;color:#6E7F98;font-size:13px">· 해외 삭스 전문, 대개 직구</span></h4>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">발레가</span><span class="ds">푹신 쿠션·편안함 甲</span></div>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">피처스</span><span class="ds">좌우 구분(L/R)로 처짐·물집 방지</span></div>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">단터프</span><span class="ds">평생보증·내구성, 메리노 겨울 甲</span></div>
+          <div class="brow"><span class="dot">🟡</span><span class="nm">인진지</span><span class="ds">발가락양말, 장거리 물집엔 甲</span></div>
+        </div>
+        <div class="bcard reveal">
+          <h4>요즘 뜨는 가성비·국내</h4>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">리투(RETU)</span><span class="ds">국내 브랜드, 평발 러너 언급 多</span></div>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">데카트론(킵런)</span><span class="ds">초저가 입문, 매장서 부담 없이</span></div>
+          <div class="brow"><span class="dot">🟢</span><span class="nm">데상트·브룩스</span><span class="ds">국내생산·정식, 가성비 평 좋음</span></div>
+          <div class="brow"><span class="dot">📌</span><span class="ds">신흥은 기능보다 가격·디자인 강점인 곳도. 기능성부터 확인!</span></div>
+        </div>
+        <div class="bcard reveal">
+          <h4>해외 패션 러닝 <span style="font-weight:500;color:#6E7F98;font-size:13px">· 양말은 곁다리</span></h4>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">새티스파이</span><span class="ds">파리, 스트릿×러닝 감성</span></div>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">트랙스미스</span><span class="ds">70s 레트로 러닝</span></div>
+          <div class="brow"><span class="dot">🔴</span><span class="nm">안테베를린</span><span class="ds">슬로건 삭스</span></div>
+        </div>
+      </div>
+      <p class="note keep">⚠️ 브랜드 평가는 러닝 커뮤니티·리뷰의 공통 반응을 정리한 참고용이에요. 가격·유통은 시점마다 다르니 구매 전 확인하세요. 발 특성은 사람마다 다릅니다.</p>
+    </section>
+
+    <!-- 04 다음 편 예고 -->
+    <section class="section" id="next">
+      <div class="secno reveal">04 — COMING SOON</div>
+      <h2 class="sech reveal">다음 편 예고</h2>
+      <div class="soon reveal">
+        <div class="ico">⌚</div>
+        <h3>②편 · 러닝 앱·워치, 뭐부터 깔지?</h3>
+        <p>기록 앱부터 워치 입문까지 — 곧 공개됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 05 크루 안내 -->
+    <section class="section" id="crew">
+      <div class="crew reveal">
+        <span class="kbadge">🌊 도안호수러닝크루</span>
+        <h3>그래도 고민되면?<br>크루에 물어보세요 🙋</h3>
+        <p class="keep">아래 4개만 알려주시면 같이 골라드려요 — ① 평소 신발 사이즈 ② 발볼(넓음/보통/좁음) ③ 예산 ④ 주로 뛰는 곳(트랙/로드/러닝머신)</p>
+        <div class="btns" style="justify-content:center">
+          <a href="#" class="btn primary" id="chatLink">💬 단톡방 문의하기</a>
+          <a href="#top" class="btn ghost">맨 위로 ↑</a>
+        </div>
+        <p style="font-size:13px;color:#6E7F98;margin-top:22px">※ 단톡 링크는 <b>[여기에 링크]</b> 자리에 넣어주세요.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fx">도안호수러닝크루 🌊</div>
+    <p style="margin-top:8px">신규 환영 · 함께 달려요 · 4소스 교차검증 가이드</p>
+    <p style="margin-top:10px;font-size:12px;color:#4E5D74">⚠️ 참고용 정보입니다. 뛰다가 특정 부위가 계속 아프면 무리하지 말고 병원부터 가보세요.</p>
+  </footer>
+
+<script>
+  // 스크롤 진행바 + 내비 배경
+  const progress=document.getElementById('progress'), nav=document.getElementById('nav');
+  function onScroll(){
+    const h=document.documentElement, sc=h.scrollTop, max=h.scrollHeight-h.clientHeight;
+    progress.style.width=(max>0?(sc/max*100):0)+'%';
+    nav.classList.toggle('scrolled', sc>20);
+  }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // 모바일 메뉴
+  const burger=document.getElementById('burger'), mm=document.getElementById('mobileMenu'), scrim=document.getElementById('scrim');
+  function toggleMenu(open){ mm.classList.toggle('open',open); scrim.classList.toggle('open',open); }
+  burger.addEventListener('click',()=>toggleMenu(!mm.classList.contains('open')));
+  scrim.addEventListener('click',()=>toggleMenu(false));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+  // 스크롤 리빌
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // 내비 active 하이라이트
+  const secs=[...document.querySelectorAll('main section[id]')];
+  const links=[...document.querySelectorAll('.navlinks a')];
+  const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+    const id=e.target.id; links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+  }})},{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>

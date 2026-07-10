@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const albums = [
+  { title: "정기런", count: 12 }, { title: "번개런", count: 8 },
+  { title: "대회 참가", count: 6 }, { title: "원정런", count: 5 },
+  { title: "크루 모임", count: 9 }, { title: "굿즈", count: 4 },
+];
+---
+<BaseLayout title="기록·갤러리">
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">GALLERY & RECORDS</span>
+      <h1 class="ph-title">기록 · 갤러리</h1>
+      <p class="lead">매주의 순간이 쌓여 크루의 역사가 됩니다. 사진·영상·완주 후기.</p>
+    </div>
+  </section>
+
+  <!-- 사진 앨범 -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">사진 앨범</h2>
+      <div class="grid grid-3 mt-m">
+        {albums.map((a,i)=>(
+          <div class="album">
+            <div class="album-img">사진</div>
+            <div class="album-cap">
+              <b>{a.title}</b>
+              <span class="ph">{a.count}장</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="note-line">※ 사진은 나중에 CMS(TinaCMS) 편집 화면에서 글 쓰듯 올리게 됩니다. 지금은 자리만 잡아둔 상태.</p>
+    </div>
+  </section>
+
+  <!-- 영상 -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">영상</h2>
+      <p class="lead">유튜브 영상을 임베드하면 호스팅 비용 없이 여기에 재생됩니다.</p>
+      <div class="grid grid-2 mt-m">
+        {[1,2].map((i)=>(
+          <div class="embed-slot" style="padding:60px 20px">
+            <p style="font-weight:700;color:var(--ink)">▶ YouTube 영상 자리 {i}</p>
+            <p class="mt-s">유튜브 "공유 → 퍼가기" 코드를 넣으면 재생됩니다.</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 완주 후기 -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="title" style="font-size:26px">완주 후기</h2>
+      <div class="grid grid-3 mt-m">
+        {[
+          {t:"첫 5km 완주했어요",who:"○○○"},
+          {t:"함께라서 끝까지 뛰었다",who:"○○○"},
+          {t:"러닝이 이렇게 즐거울 줄",who:"○○○"},
+        ].map((p)=>(
+          <div class="card review">
+            <div class="q">“</div>
+            <b class="ph">{p.t}</b>
+            <p class="review-who ph">— {p.who}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pagehead{background:var(--ink);color:#fff;padding:56px 0 48px}
+  .pagehead .eyebrow{color:var(--volt)}
+  .ph-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:10px 0 8px}
+  .pagehead .lead{color:#c4c9d0}
+  .album{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:.15s}
+  .album:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,15,18,.1)}
+  .album-img{aspect-ratio:4/3;display:grid;place-items:center;color:#9aa1ab;font-weight:700;
+    background:repeating-linear-gradient(135deg,#f0f2f5,#f0f2f5 12px,#e9ecf0 12px,#e9ecf0 24px)}
+  .album-cap{display:flex;justify-content:space-between;padding:14px 16px}
+  .album-cap span{color:var(--muted);font-size:14px}
+  .note-line{margin-top:16px;color:var(--muted);font-size:13px}
+  .review{position:relative}
+  .review .q{font-size:44px;color:var(--volt-deep);line-height:.6;font-weight:900}
+  .review b{display:block;margin-top:6px;font-size:16px}
+  .review-who{color:var(--muted);font-size:14px;margin-top:8px}
+</style>
