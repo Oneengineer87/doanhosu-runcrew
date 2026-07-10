@@ -9,3 +9,8 @@
 - `detail-gear.webp`: 운동화·반사밴드·준비물 등 상세 사진, 가로 4:3 이상
 
 이미지를 추가할 때 `.media-slot` 내부에 `<img>`를 넣고 `object-fit: cover`를 적용합니다. 실제 크루원이 식별되는 사진은 공개 동의를 확인한 뒤 사용합니다.
+
+## 오픈소스 포함 자료
+
+- `fonts/SUIT-Variable.woff2` — [SUIT](https://github.com/sun-typeface/SUIT), SIL Open Font License 1.1
+- `lenis.min.js` — [Lenis](https://github.com/darkroomengineering/lenis), MIT License

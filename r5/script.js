@@ -64,6 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Lenis (MIT) is intentionally desktop-only: mobile keeps the browser's
+  // native scrolling behavior for responsiveness and familiar touch physics.
+  if (!reduceMotion && window.matchMedia("(min-width: 921px)").matches && window.Lenis) {
+    const lenis = new window.Lenis({
+      duration: 1.05,
+      smoothWheel: true,
+      syncTouch: false,
+    });
+    const animate = (time) => {
+      lenis.raf(time);
+      window.requestAnimationFrame(animate);
+    };
+    window.requestAnimationFrame(animate);
+  }
+
   const revealItems = document.querySelectorAll(".reveal");
 
   if (reduceMotion || !("IntersectionObserver" in window)) {

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "SUIT";
+  src: url("assets/fonts/SUIT-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --ink: #102b31;
@@ -18,7 +26,7 @@
   --radius-md: 18px;
   --radius-lg: 32px;
   --wrap: 1240px;
-  --font-sans: "Pretendard Variable", "Pretendard", "SUIT Variable", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --font-sans: "SUIT", "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
   --font-number: "Helvetica Neue", "Arial", var(--font-sans);
 }
 
@@ -2047,4 +2055,103 @@ p {
 
   .course-visual::before { border-width: 17px; }
   .route-distance { right: 15%; bottom: 23%; font-size: 58px; }
+}
+
+/* R5.4 — centered composition and calm lakeside motion */
+.home-page .photo-hero-copy {
+  right: clamp(24px, 8vw, 120px);
+  left: clamp(24px, 8vw, 120px);
+  max-width: 780px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.photo-hero-copy .display,
+.photo-hero-copy p { margin-inline: auto; }
+.photo-hero-copy .button-row { justify-content: center; }
+
+.photo-hero::before {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 50%;
+  width: min(34vw, 420px);
+  height: min(34vw, 420px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 40%, rgba(255,255,221,.72), rgba(165,239,220,.36) 28%, rgba(56,153,178,.16) 53%, transparent 72%);
+  content: "";
+  filter: blur(14px);
+  animation: lake-light-drift 17s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.photo-hero > img {
+  animation: lake-photo-breathe 22s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.photo-hero-shade {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(9, 35, 41, .18) 0%, rgba(9, 35, 41, .04) 38%, rgba(8, 25, 30, .72) 100%);
+}
+
+.photo-hero-copy { z-index: 2; }
+
+.page-hero,
+.page-hero-inner,
+.section-heading-row,
+.section > .wrap > .reveal:first-child,
+.channel-callout,
+.closing-panel {
+  text-align: center;
+}
+
+.page-hero-inner { display: block; }
+.page-hero p { max-width: 590px; margin: 26px auto 0; }
+.section-copy { margin-inline: auto; }
+.section-heading-row { align-items: center; }
+.principle-layout,
+.media-layout,
+.story-layout { text-align: center; }
+.principle-list { max-width: 540px; margin-inline: auto; }
+.channel-callout { justify-content: center; }
+.channel-callout .button { flex: 0 0 auto; }
+.closing-panel p { margin-inline: auto; }
+.closing-panel .button-row { justify-content: center; }
+
+.fact-item,
+.timeline li,
+.mission-item,
+.safety-item,
+.role-row,
+.channel-row,
+.action-item,
+.pace-row { text-align: center; }
+
+.info-stack,
+.notice { text-align: left; }
+
+@keyframes lake-light-drift {
+  from { transform: translate3d(-54%, -5%, 0) scale(.82); opacity: .52; }
+  to { transform: translate3d(-42%, 10%, 0) scale(1.16); opacity: .95; }
+}
+
+@keyframes lake-photo-breathe {
+  from { transform: scale(1); filter: saturate(1) contrast(1); }
+  to { transform: scale(1.045); filter: saturate(1.08) contrast(1.03); }
+}
+
+@media (max-width: 680px) {
+  .home-page .photo-hero-copy { right: 22px; bottom: 50px; left: 22px; }
+  .home-page .photo-hero-copy .display { max-width: 350px; }
+  .photo-hero::before { top: 27%; width: 240px; height: 240px; }
+  .section-heading-row { align-items: center; }
+  .channel-callout { align-items: center; }
+  .info-stack li,
+  .info-row { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-hero::before,
+  .photo-hero > img { animation: none; }
 }
