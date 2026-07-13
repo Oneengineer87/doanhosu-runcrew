@@ -1,0 +1,41 @@
+name: Site safety checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check public files
+        run: npm run check
+
+      - name: Build Railway image
+        run: docker build --tag doanhosu-runcrew:test .
+
+      - name: Start test container
+        run: docker run --detach --name doanhosu-runcrew --env PORT=8080 --publish 8080:8080 doanhosu-runcrew:test
+
+      - name: Smoke test
+        run: |
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            if curl --fail --silent --show-error http://127.0.0.1:8080/healthz && curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs doanhosu-runcrew
+          exit 1

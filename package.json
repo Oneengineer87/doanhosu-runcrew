@@ -1,0 +1,15 @@
+{
+  "name": "doanhosu-runcrew-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "도안호수러닝크루 정적 웹사이트 배포·검증 하네스",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/site-audit.mjs",
+    "check:release": "node scripts/site-audit.mjs --release",
+    "test": "npm run check"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

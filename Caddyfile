@@ -1,0 +1,27 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	route {
+		header {
+			Cache-Control "no-cache"
+			Permissions-Policy "camera=(), microphone=(), geolocation=()"
+			Referrer-Policy "strict-origin-when-cross-origin"
+			X-Content-Type-Options "nosniff"
+			X-Frame-Options "SAMEORIGIN"
+		}
+		header /assets/* Cache-Control "public, max-age=3600, must-revalidate"
+		respond /healthz "ok" 200
+		file_server
+	}
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

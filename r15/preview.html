@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="도안호수러닝크루 R15 전체 홈 데스크톱·모바일 동시 미리보기">
+  <title>R15 전체 홈 비교 | 도안호수러닝크루</title>
+  <style>
+    :root {
+      color: #10182b;
+      background: #e9edf3;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 30px; }
+    header, main, .guide { width: min(1480px, 100%); margin-inline: auto; }
+    header {
+      display: grid;
+      margin-bottom: 24px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 28px;
+    }
+    h1 { margin: 0 0 8px; font-size: clamp(26px, 3vw, 38px); letter-spacing: 0; }
+    header p { max-width: 760px; margin: 0; color: #60697c; font-size: 15px; line-height: 1.65; }
+    .badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+    .badge { padding: 8px 11px; background: #15233c; color: #fff; font-size: 12px; font-weight: 750; }
+    .badge.temp { background: #ff6a3d; color: #10182b; }
+    .guide {
+      display: grid;
+      margin-bottom: 26px;
+      padding: 18px 20px;
+      border: 1px solid rgba(21,35,60,.14);
+      background: rgba(255,255,255,.66);
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+    .guide strong { font-size: 14px; }
+    .guide p { margin: 0; color: #60697c; font-size: 14px; line-height: 1.55; }
+    .open {
+      display: inline-flex;
+      min-height: 42px;
+      padding: 0 15px;
+      background: #15233c;
+      color: #fff;
+      align-items: center;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .views {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 410px;
+      align-items: start;
+      gap: 28px;
+    }
+    .view-label {
+      display: flex;
+      margin: 0 0 9px;
+      color: #4f5a70;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .window {
+      overflow: hidden;
+      border: 1px solid rgba(21,35,60,.14);
+      background: #fff;
+      box-shadow: 0 22px 50px rgba(21,35,60,.14);
+    }
+    .desktop { border-radius: 15px; }
+    iframe { display: block; width: 100%; height: 810px; border: 0; }
+    .phone-shell {
+      width: 410px;
+      padding: 10px;
+      border-radius: 42px;
+      background: #0b1426;
+      box-shadow: 0 22px 50px rgba(21,35,60,.22);
+    }
+    .phone { border-radius: 33px; }
+    .phone iframe { width: 390px; height: 810px; }
+    .hint {
+      width: min(1480px,100%);
+      margin: 24px auto 0;
+      color: #60697c;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    @media (max-width: 960px) {
+      body { padding: 20px 15px; }
+      header { grid-template-columns: 1fr; }
+      .badges { justify-content: flex-start; }
+      .guide { grid-template-columns: 1fr; }
+      .open { width: fit-content; }
+      .views { grid-template-columns: 1fr; }
+      .desktop iframe { height: 620px; }
+      .mobile-view { width: min(410px,100%); margin-inline: auto; }
+      .phone-shell { width: 100%; }
+      .phone iframe { width: 100%; }
+    }
+    @media (max-width: 430px) {
+      .phone-shell { padding: 7px; border-radius: 30px; }
+      .phone { border-radius: 24px; }
+      iframe, .phone iframe { height: 720px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>R15 · 1안 전체 홈</h1>
+      <p>확정된 운영 정보, 모임 광장 지도, 감독님 소개와 사진, 카카오톡 공식채널을 반영했습니다. 왼쪽은 컴퓨터, 오른쪽은 실제 390px 휴대폰 화면입니다.</p>
+    </div>
+    <div class="badges">
+      <span class="badge">폰트 1안 확정</span>
+      <span class="badge temp">R15 내용 반영</span>
+    </div>
+  </header>
+
+  <section class="guide" aria-label="확인할 부분">
+    <strong>이번에 볼 것</strong>
+    <p>① 첫 화면의 인상 ② 일정→목표 그룹→첫 참여 흐름 ③ 모임 광장 지도와 준비물 ④ 감독님 소개 사진 ⑤ 카카오톡 공식채널 연결</p>
+    <a class="open" href="index.html">전체 화면으로 열기 ↗</a>
+  </section>
+
+  <main class="views">
+    <section>
+      <div class="view-label"><span>DESKTOP</span><span>창 안에서 스크롤</span></div>
+      <div class="window desktop"><iframe title="R15 컴퓨터 화면" src="index.html"></iframe></div>
+    </section>
+    <section class="mobile-view">
+      <div class="view-label"><span>MOBILE · 390PX</span><span>카카오톡 보기 기준</span></div>
+      <div class="phone-shell"><div class="window phone"><iframe title="R15 휴대폰 화면" src="index.html"></iframe></div></div>
+    </section>
+  </main>
+
+  <p class="hint">※ 히어로 호수 사진은 아직 테스트 이미지입니다. 인스타그램은 미운영으로 표시했고, 네이버 밴드는 정회원 전용이라 공개 링크를 넣지 않았습니다. 기존 R14와 다른 버전은 그대로 보존되어 있습니다.</p>
+</body>
+</html>
