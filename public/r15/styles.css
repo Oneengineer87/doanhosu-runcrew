@@ -1066,17 +1066,23 @@ h3 {
 
 .route-cards article {
   display: grid;
-  min-height: 188px;
-  padding: 28px 0 30px;
+  min-height: auto;
+  padding: 26px 0 28px;
   border-bottom: 1px solid var(--line);
-  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-columns: 38px minmax(0, 1fr);
   align-content: start;
+  gap: 8px;
 }
 
 .route-cards span {
+  padding-top: 5px;
   color: var(--accent-text);
   font-size: 12px;
   font-weight: 780;
+}
+
+.route-cards article > div {
+  min-width: 0;
 }
 
 .route-cards strong {
@@ -1105,6 +1111,7 @@ h3 {
   align-items: center;
   font-size: 13px;
   font-weight: 760;
+  line-height: 1.2;
 }
 
 .coach-banner {
@@ -1914,6 +1921,7 @@ footer > span {
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .route-cards article:first-child {
