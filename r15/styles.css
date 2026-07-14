@@ -474,8 +474,10 @@ h3 {
 }
 
 .intro-statement,
+.run-stats,
 .schedule,
 .first-run,
+.routes,
 .membership,
 .channels,
 .faq {
@@ -562,6 +564,115 @@ h3 {
   font-size: 31px;
   font-weight: 760;
   letter-spacing: 0;
+}
+
+.run-stats {
+  display: grid;
+  overflow: hidden;
+  background: var(--navy-deep);
+  color: var(--white);
+  gap: 42px;
+}
+
+.stats-copy {
+  width: min(100%, 680px);
+}
+
+.stats-copy h2 {
+  margin: 14px 0 20px;
+  font-size: clamp(36px, 10.3vw, 52px);
+  font-weight: 720;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.stats-copy > p:not(.eyebrow) {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.stats-status {
+  display: inline-flex;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 180, 158, 0.38);
+  color: #ffb49e;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.stats-board {
+  position: relative;
+  width: min(100%, 920px);
+  padding: 28px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.total-distance {
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.total-distance > span,
+.stats-grid span {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffb49e;
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.total-distance strong {
+  display: block;
+  color: var(--accent);
+  font-size: clamp(52px, 17vw, 92px);
+  font-weight: 820;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.total-distance b,
+.stats-grid b {
+  font: inherit;
+}
+
+.stats-grid {
+  display: grid;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.stats-grid > div {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.stats-grid > div:last-child {
+  border-bottom: 0;
+}
+
+.stats-grid strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 760;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.stats-note {
+  margin: 22px 0 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.stats-updated {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 13px;
+  font-weight: 650;
 }
 
 .schedule {
@@ -836,6 +947,32 @@ h3 {
   line-height: 1.65;
 }
 
+.promise-strip {
+  width: min(100%, var(--content));
+  margin: 34px auto 0;
+  padding: 30px var(--gutter) 32px;
+  background: var(--accent);
+  color: var(--navy-deep);
+}
+
+.promise-strip p {
+  margin: 0 0 14px;
+  font-size: 32px;
+  font-weight: 520;
+  line-height: 1.18;
+}
+
+.promise-strip strong {
+  font-weight: 820;
+}
+
+.promise-strip span {
+  display: block;
+  font-size: 15px;
+  font-weight: 630;
+  line-height: 1.6;
+}
+
 .place-guide {
   display: grid;
   width: min(100%, var(--content));
@@ -914,6 +1051,60 @@ h3 {
   color: rgba(255, 255, 255, 0.72);
   font-size: 15px;
   line-height: 1.68;
+}
+
+.routes {
+  background: var(--paper);
+}
+
+.route-cards {
+  display: grid;
+  width: min(100%, var(--content));
+  margin-inline: auto;
+  border-top: 1px solid var(--line);
+}
+
+.route-cards article {
+  display: grid;
+  min-height: 188px;
+  padding: 28px 0 30px;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-content: start;
+}
+
+.route-cards span {
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 780;
+}
+
+.route-cards strong {
+  display: block;
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 740;
+  line-height: 1.18;
+}
+
+.route-cards p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.64;
+}
+
+.route-cards b {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 32px;
+  margin-top: 18px;
+  padding: 0 11px;
+  border: 1px solid rgba(184, 59, 29, 0.28);
+  color: var(--accent-text);
+  align-items: center;
+  font-size: 13px;
+  font-weight: 760;
 }
 
 .coach-banner {
@@ -1052,6 +1243,56 @@ h3 {
   font-size: 16px;
   font-weight: 560;
   line-height: 1.62;
+}
+
+.milestones {
+  width: min(100%, 920px);
+  margin: 54px auto 0;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+
+.milestones h3 {
+  margin: 12px 0 28px;
+  font-size: 30px;
+  font-weight: 730;
+  line-height: 1.18;
+}
+
+.milestones ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 0;
+}
+
+.milestones li {
+  display: grid;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.milestones li > span {
+  color: var(--accent-text);
+  font-size: 24px;
+  font-weight: 780;
+  line-height: 1.2;
+}
+
+.milestones strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 19px;
+}
+
+.milestones p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .channels {
@@ -1420,8 +1661,10 @@ footer > span {
   }
 
   .intro-statement,
+  .run-stats,
   .schedule,
   .first-run,
+  .routes,
   .membership,
   .channels,
   .faq {
@@ -1442,6 +1685,48 @@ footer > span {
     width: 164px;
     height: 164px;
     margin-top: 60px;
+  }
+
+  .run-stats {
+    grid-template-columns: minmax(320px, 0.85fr) minmax(460px, 1.15fr);
+    align-items: center;
+    gap: 8vw;
+  }
+
+  .stats-copy h2 {
+    font-size: clamp(54px, 5.5vw, 80px);
+  }
+
+  .stats-board {
+    padding-top: 36px;
+  }
+
+  .total-distance {
+    padding-bottom: 34px;
+  }
+
+  .total-distance strong {
+    font-size: clamp(76px, 7.4vw, 118px);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stats-grid > div {
+    min-height: 132px;
+    padding: 28px 24px 26px;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 0;
+  }
+
+  .stats-grid > div:first-child {
+    padding-left: 0;
+  }
+
+  .stats-grid > div:last-child {
+    padding-right: 0;
+    border-right: 0;
   }
 
   .day-track {
@@ -1560,6 +1845,24 @@ footer > span {
     margin-left: auto;
   }
 
+  .promise-strip {
+    display: grid;
+    margin-top: 48px;
+    padding: 38px 48px 42px;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(380px, 1.1fr);
+    align-items: end;
+    gap: 48px;
+  }
+
+  .promise-strip p {
+    margin: 0;
+    font-size: 45px;
+  }
+
+  .promise-strip span {
+    font-size: 17px;
+  }
+
   .place-guide {
     margin-top: 74px;
     grid-template-columns: 0.82fr 1.18fr;
@@ -1599,6 +1902,31 @@ footer > span {
 
   .prep-list > p:last-child {
     margin-top: 4px;
+  }
+
+  .route-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .route-cards article {
+    min-height: 330px;
+    padding: 34px 30px 36px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: 1fr;
+  }
+
+  .route-cards article:first-child {
+    padding-left: 0;
+  }
+
+  .route-cards article:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .route-cards span {
+    margin-bottom: 62px;
   }
 
   .coach-banner {
@@ -1652,6 +1980,42 @@ footer > span {
     margin-top: 78px;
     grid-template-columns: 190px 1fr;
     align-items: center;
+  }
+
+  .milestones {
+    margin-top: 76px;
+  }
+
+  .milestones h3 {
+    font-size: 42px;
+  }
+
+  .milestones ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+  }
+
+  .milestones li {
+    display: block;
+    min-height: 180px;
+    padding: 26px 24px 28px;
+    border-top: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .milestones li:first-child {
+    padding-left: 0;
+  }
+
+  .milestones li:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .milestones li > span {
+    display: block;
+    margin-bottom: 42px;
+    font-size: 34px;
   }
 
   .channel-list {
@@ -1725,8 +2089,10 @@ footer > span {
   }
 
   .intro-statement,
+  .run-stats,
   .schedule,
   .first-run,
+  .routes,
   .membership,
   .channels,
   .faq,

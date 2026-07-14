@@ -1,0 +1,9 @@
+{
+  "label": "테스트 운영 중",
+  "updatedAt": "2026-07-14",
+  "totalKm": 1250.8,
+  "monthKm": 184.6,
+  "crewRuns": 42,
+  "activeMembers": 28,
+  "note": "기록 제출은 선택입니다. 이름은 공개하지 않고 크루 전체 거리로만 더합니다."
+}

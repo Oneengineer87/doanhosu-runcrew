@@ -137,4 +137,85 @@
       });
     });
   });
+
+  const formatNumber = (value) => {
+    const number = Number(value) || 0;
+    return number % 1 === 0
+      ? number.toLocaleString("ko-KR")
+      : number.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  };
+
+  const animateNumber = (element, value) => {
+    const target = Number(value) || 0;
+    element.dataset.finalValue = String(target);
+
+    if (reduceMotion) {
+      element.textContent = formatNumber(target);
+      return;
+    }
+
+    const duration = element.dataset.statNumber === "totalKm" ? 1450 : 1050;
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = formatNumber(target * eased);
+      if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+  };
+
+  const runStatsAnimation = (numbers, stats) => {
+    numbers.forEach((item) => animateNumber(item, stats[item.dataset.statNumber]));
+  };
+
+  const loadRunStats = async () => {
+    const numbers = [...document.querySelectorAll("[data-stat-number]")];
+    if (!numbers.length) return;
+    const runStatsSection = document.querySelector(".run-stats");
+    let stats = {};
+
+    try {
+      const response = await fetch("data/run-stats.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`run stats ${response.status}`);
+      stats = await response.json();
+
+      document.querySelector("[data-stat-label]").textContent = stats.label || "테스트 운영 중";
+      document.querySelector("[data-stat-note]").textContent = stats.note || "운영진이 정기적으로 업데이트합니다.";
+
+      const updated = document.querySelector("[data-stat-updated]");
+      if (stats.updatedAt && updated) {
+        const date = new Date(`${stats.updatedAt}T00:00:00`);
+        updated.dateTime = stats.updatedAt;
+        updated.textContent = Number.isNaN(date.valueOf())
+          ? stats.updatedAt
+          : date.toLocaleDateString("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit" });
+      }
+    } catch {
+      numbers.forEach((item) => {
+        stats[item.dataset.statNumber] = item.textContent;
+      });
+    }
+
+    const revealNumbers = () => {
+      if (runStatsSection?.dataset.statsAnimated === "true") return;
+      if (runStatsSection) runStatsSection.dataset.statsAnimated = "true";
+      runStatsAnimation(numbers, stats);
+    };
+
+    if (reduceMotion || !runStatsSection || !("IntersectionObserver" in window)) {
+      revealNumbers();
+      return;
+    }
+
+    const statObserver = new IntersectionObserver((entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      revealNumbers();
+      observer.disconnect();
+    }, { threshold: 0.36, rootMargin: "0px 0px -12% 0px" });
+
+    statObserver.observe(runStatsSection);
+  };
+
+  loadRunStats();
 })();
