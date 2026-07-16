@@ -1345,10 +1345,12 @@ h3 {
   max-width: 620px;
 }
 
-.channel-notes {
+.channel-list > .channel-notes {
   display: block;
   min-height: auto;
   padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: none;
 }
 
 .channel-notes > span {
@@ -2110,20 +2112,25 @@ footer > span {
     text-align: right;
   }
 
-  .channel-notes {
+  .channel-list > .channel-notes {
+    display: block;
+    width: 100%;
+    min-height: auto;
     padding: 18px 0 0;
+    grid-template-columns: none;
   }
 
   .channel-notes ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .channel-notes li {
-    grid-template-columns: 1fr;
-    align-content: start;
-    min-height: 104px;
+    grid-template-columns: minmax(140px, auto) minmax(0, 1fr) auto;
+    align-content: center;
+    align-items: center;
+    min-height: auto;
     gap: 8px;
-    padding: 18px;
+    padding: 14px 18px;
   }
 
   .faq {
