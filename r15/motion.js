@@ -27,28 +27,6 @@
     }
   };
 
-  const revealPassedContent = () => {
-    if (reduceMotion) return;
-    const revealLimit = window.innerHeight * 1.02;
-
-    document.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((item) => {
-      if (item.getBoundingClientRect().top < revealLimit) {
-        item.classList.add("is-visible");
-      }
-    });
-
-    document.querySelectorAll("[data-timeline]:not(.timeline-active)").forEach((item) => {
-      if (item.getBoundingClientRect().top < revealLimit) {
-        item.classList.add("timeline-active");
-      }
-    });
-
-    const stage = document.querySelector(".schedule-stage");
-    if (stage && stage.getBoundingClientRect().top < revealLimit) {
-      stage.classList.add("route-active");
-    }
-  };
-
   menu.inert = true;
   toggle.addEventListener("click", () => setMenu(!menuOpen));
   closeButton.addEventListener("click", () => setMenu(false));
@@ -81,7 +59,6 @@
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const value = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
     progress.style.transform = `scaleX(${value})`;
-    revealPassedContent();
     scrollTicking = false;
   };
 
@@ -122,7 +99,6 @@
       observer.disconnect();
     }, { threshold: 0.2 });
     routeObserver.observe(scheduleStage);
-    revealPassedContent();
   } else {
     document.querySelector(".schedule-stage")?.classList.add("route-active");
     document.querySelectorAll("[data-timeline]").forEach((item) => item.classList.add("timeline-active"));
