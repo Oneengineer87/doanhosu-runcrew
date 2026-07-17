@@ -93,12 +93,14 @@
     timelineItems.forEach((item) => timelineObserver.observe(item));
 
     const scheduleStage = document.querySelector(".schedule-stage");
-    const routeObserver = new IntersectionObserver((entries, observer) => {
-      if (!entries[0].isIntersecting && entries[0].boundingClientRect.top >= 0) return;
-      scheduleStage.classList.add("route-active");
-      observer.disconnect();
-    }, { threshold: 0.2 });
-    routeObserver.observe(scheduleStage);
+    if (scheduleStage) {
+      const routeObserver = new IntersectionObserver((entries, observer) => {
+        if (!entries[0].isIntersecting && entries[0].boundingClientRect.top >= 0) return;
+        scheduleStage.classList.add("route-active");
+        observer.disconnect();
+      }, { threshold: 0.2 });
+      routeObserver.observe(scheduleStage);
+    }
   } else {
     document.querySelector(".schedule-stage")?.classList.add("route-active");
     document.querySelectorAll("[data-timeline]").forEach((item) => item.classList.add("timeline-active"));
@@ -110,6 +112,22 @@
       if (!item.open) return;
       faqItems.forEach((other) => {
         if (other !== item) other.open = false;
+      });
+    });
+  });
+
+  const shoeFilters = [...document.querySelectorAll("[data-shoe-filter]")];
+  const shoeRows = [...document.querySelectorAll("[data-shoe-cat]")];
+  shoeFilters.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.shoeFilter;
+      shoeFilters.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      shoeRows.forEach((row) => {
+        row.classList.toggle("is-hidden", target !== "all" && row.dataset.shoeCat !== target);
       });
     });
   });
