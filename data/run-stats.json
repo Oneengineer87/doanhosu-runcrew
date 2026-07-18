@@ -1,9 +1,9 @@
 {
-  "label": "테스트 운영 중",
-  "updatedAt": "2026-07-14",
-  "totalKm": 1250.8,
-  "monthKm": 184.6,
-  "crewRuns": 42,
-  "activeMembers": 28,
-  "note": "기록 제출은 선택입니다. 이름은 공개하지 않고 크루 전체 거리로만 더합니다."
+  "label": "1차 집계 반영",
+  "updatedAt": "2026-07-18",
+  "totalKm": 14824.72,
+  "averageKm": 705.94,
+  "recordCount": 21,
+  "topKm": 2700,
+  "note": "총 21건의 제출 기록을 정제해 합산했습니다. 개인 이름은 공개하지 않고 크루 전체 거리로만 보여줍니다."
 }

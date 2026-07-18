@@ -132,19 +132,25 @@
     });
   });
 
-  const formatNumber = (value) => {
+  const getDecimalPlaces = (value) => {
+    const decimal = String(value).split(".")[1];
+    return decimal ? Math.min(decimal.length, 2) : 0;
+  };
+
+  const formatNumber = (value, decimals = getDecimalPlaces(value)) => {
     const number = Number(value) || 0;
-    return number % 1 === 0
+    return decimals === 0
       ? number.toLocaleString("ko-KR")
-      : number.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      : number.toLocaleString("ko-KR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   };
 
   const animateNumber = (element, value) => {
     const target = Number(value) || 0;
+    const decimals = getDecimalPlaces(value);
     element.dataset.finalValue = String(target);
 
     if (reduceMotion) {
-      element.textContent = formatNumber(target);
+      element.textContent = formatNumber(target, decimals);
       return;
     }
 
@@ -153,7 +159,7 @@
     const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      element.textContent = formatNumber(target * eased);
+      element.textContent = formatNumber(target * eased, decimals);
       if (progress < 1) window.requestAnimationFrame(step);
     };
     window.requestAnimationFrame(step);
