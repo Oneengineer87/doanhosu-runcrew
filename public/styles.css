@@ -2006,6 +2006,57 @@ h3 {
   font-size: 16px;
 }
 
+.update-log {
+  width: min(calc(100% - (var(--gutter) * 2)), 860px);
+  margin: 0 auto 80px;
+  padding: 34px 24px 28px;
+  border: 1px solid rgba(16, 24, 43, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 80px rgba(21, 35, 60, 0.07);
+}
+
+.update-log h2 {
+  margin: 12px 0 14px;
+  font-size: clamp(32px, 8vw, 54px);
+  line-height: 1.06;
+}
+
+.update-log > p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.68;
+}
+
+.update-log ol {
+  display: grid;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  gap: 12px;
+}
+
+.update-log li {
+  display: grid;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(16, 24, 43, 0.1);
+  gap: 6px;
+}
+
+.update-log time {
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.update-log li span {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.58;
+}
+
 .faq {
   background: var(--navy);
   color: var(--white);
@@ -2177,6 +2228,10 @@ footer > span {
   font-size: 12px;
   font-weight: 650;
   letter-spacing: 0;
+}
+
+.site-version {
+  display: block;
 }
 
 .footer-resource-link {
@@ -2932,6 +2987,16 @@ footer > span {
 
   footer > span {
     text-align: right;
+  }
+
+  .update-log {
+    margin-bottom: 110px;
+    padding: 44px 44px 40px;
+  }
+
+  .update-log li {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 18px;
   }
 }
 

@@ -144,7 +144,7 @@
       : number.toLocaleString("ko-KR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   };
 
-  const animateNumber = (element, value) => {
+  const animateNumber = (element, value, options = {}) => {
     const target = Number(value) || 0;
     const decimals = getDecimalPlaces(value);
     element.dataset.finalValue = String(target);
@@ -154,19 +154,21 @@
       return;
     }
 
-    const duration = element.dataset.statNumber === "totalKm" ? 1450 : 1050;
+    const replay = options.replay === true;
+    const duration = replay ? 680 : (element.dataset.statNumber === "totalKm" ? 1450 : 1050);
+    const startValue = replay ? target * 0.965 : 0;
     const start = performance.now();
     const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      element.textContent = formatNumber(target * eased, decimals);
+      element.textContent = formatNumber(startValue + ((target - startValue) * eased), decimals);
       if (progress < 1) window.requestAnimationFrame(step);
     };
     window.requestAnimationFrame(step);
   };
 
-  const runStatsAnimation = (numbers, stats) => {
-    numbers.forEach((item) => animateNumber(item, stats[item.dataset.statNumber]));
+  const runStatsAnimation = (numbers, stats, options = {}) => {
+    numbers.forEach((item) => animateNumber(item, stats[item.dataset.statNumber], options));
   };
 
   const loadRunStats = async () => {
@@ -198,9 +200,9 @@
     }
 
     const revealNumbers = () => {
-      if (runStatsSection?.dataset.statsAnimated === "true") return;
+      const animated = runStatsSection?.dataset.statsAnimated === "true";
       if (runStatsSection) runStatsSection.dataset.statsAnimated = "true";
-      runStatsAnimation(numbers, stats);
+      runStatsAnimation(numbers, stats, { replay: animated });
     };
 
     if (reduceMotion || !runStatsSection || !("IntersectionObserver" in window)) {
@@ -208,10 +210,14 @@
       return;
     }
 
-    const statObserver = new IntersectionObserver((entries, observer) => {
+    let lastReplayAt = 0;
+    const statObserver = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) return;
+      const now = Date.now();
+      const animated = runStatsSection?.dataset.statsAnimated === "true";
+      if (animated && now - lastReplayAt < 1600) return;
+      lastReplayAt = now;
       revealNumbers();
-      observer.disconnect();
     }, { threshold: 0.36, rootMargin: "0px 0px -12% 0px" });
 
     statObserver.observe(runStatsSection);
