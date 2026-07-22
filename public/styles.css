@@ -754,6 +754,8 @@ h3 {
 .stats-board {
   position: relative;
   width: min(100%, 920px);
+  max-width: 100%;
+  min-width: 0;
   padding: 28px 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.24);
 }
@@ -774,11 +776,15 @@ h3 {
 
 .total-distance strong {
   display: block;
+  max-width: 100%;
   color: var(--accent);
-  font-size: clamp(52px, 17vw, 92px);
+  font-size: clamp(36px, 11.2vw, 52px);
   font-weight: 820;
   line-height: 0.98;
   letter-spacing: 0;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .total-distance b,
